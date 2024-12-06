@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        header 
+        
+        {
+            background-color: #6200ea;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        header .logo {
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+}
+
+header .logo-img {
+    height: 40px;
+    width: auto;
+}
+
+        
+
+        header a.logo-button {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+            background-color: #ffffff00;
+            padding: 5px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.197);
+        }
+
+        header a.logo-button img {
+            height: 30px;
+            margin-right: 5px;
+        }
+
+   
+       
+
+    
+        /* Стили для меню */
+    .menu-link {
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.8em;
+        opacity: 0.5;
+        transition: opacity 0.3s;
+    }
+
+    .menu-link:hover {
+        opacity: 1; 
+    }
+    /* Активная страница */
+    .menu-link.active {
+        opacity: 1; /* Постоянная видимость */
+        font-weight: bold; /* Можно добавить для выделения */
+    }
+
+    header .notification-toggle {
+    position: absolute;
+    right: 150px; /* Регулируйте позицию */
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    transform: translateY(-50%);
+    background-color: #ffffff00;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    
+}
+
+header .notification-toggle:hover {
+    background-color: #ececec00;
+}
+
+header .notification-toggle .notification-icon {
+    height: 20px;
+    width: 20px;
+    transition: opacity 0.3s;
+}
+
+ /* Общий стиль страницы */
+ * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        header {
+            background-color: #6200ea;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-content {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .task-input-panel, .task-list-panel {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            color: #6200ea;
+        }
+
+        input, textarea, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #6200ea;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #5300b5;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .task-item {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .task-status {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .status-sent {
+            color: #fff;
+            background-color: #6c757d;
+        }
+
+        .status-in-progress {
+            color: #fff;
+            background-color: #ffc107;
+        }
+
+        .status-completed {
+            color: #fff;
+            background-color: #28a745;
+        }
+
+        .status-postponed {
+            color: #fff;
+            background-color: #007bff;
+        }
+
+        .status-unaccepted {
+            color: #fff;
+            background-color: #dc3545;
+        }
+
+        .task-actions {
+            margin-top: 10px;
+        }
+
+        .status-summary {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .status-summary div {
+            margin: 5px 0;
+        }
+
+        .status-summary span {
+            font-weight: bold;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            background-color: #6200ea;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 0.9em;
+            z-index: 1000;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <a href="/" class="logo">
+            <img src="file:C:/Users/4816025/OneDrive/Рабочий стол/public/images/logo-task-05-05.svg" alt="Логотип" class="logo-img">
+        </a>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 15px; ">
+            <!-- Меню -->
+            
+                <a href="home.html" class="menu-link">Главная</a>
+                <a href="daily-tasks.html" class="menu-link  ">Ежедневные задачи</a>
+                <a href="planned-tasks.html" class="menu-link">Плановые задачи</a>
+                <a href="daily-assignments.html" class="menu-link active">Ежедневные поручения</a>
+                <a href="status-tasks.html" class="menu-link">Статус</a>
+            </nav>
+
+            <button id="toggleNotifications" class="notification-toggle">
+                <img src="file:C:/Users/4816025/OneDrive/Рабочий стол/public/images/icons/Bell-ON-01.svg" alt="Уведомления" class="notification-icon">
+            </button>
+
+            
+            
+    
+
+
+        <a href="/login" class="logo-button">
+            <img src="file:C:/Users/4816025/OneDrive/Рабочий стол/public/images/enter.png" >
+            Вход
+        </a>
+
+        
+    
+        
+    </header>
+
+    <div class="main-content">
+        <!-- Панель добавления задач -->
+        <div class="task-input-panel">
+            <h2>Добавить задачу</h2>
+            <form id="taskForm">
+                <input type="text" id="taskName" placeholder="Название задачи" required>
+                <textarea id="taskDescription" placeholder="Описание задачи"></textarea>
+                <input type="datetime-local" id="taskDeadline" required>
+                <select id="taskPriority" required>
+                    <option value="high">Высокий приоритет</option>
+                    <option value="medium">Средний приоритет</option>
+                    <option value="low">Низкий приоритет</option>
+                </select>
+                <select id="taskTeam" required>
+                    <option value="teamA">Бригада А</option>
+                    <option value="teamB">Бригада Б</option>
+                    <option value="teamC">Бригада В</option>
+                </select>
+                <button type="submit">Добавить задачу</button>
+            </form>
+        </div>
+
+        <!-- Панель списка задач -->
+        <div class="task-list-panel">
+            <h2>Список задач</h2>
+            <ul id="taskList">
+                <!-- Динамически добавляемые задачи -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Блок для отображения количества задач по статусам -->
+    <div class="status-summary" id="statusSummary">
+        <div>Отправлено: <span id="countSent">0</span></div>
+        <div>В процессе: <span id="countInProgress">0</span></div>
+        <div>Завершено: <span id="countCompleted">0</span></div>
+        <div>Отложено: <span id="countPostponed">0</span></div>
+    </div>
+</div>
+
+
+<script>
+    const tasks = [];
+
+    function renderTasks() {
+        const taskList = document.getElementById('taskList');
+        taskList.innerHTML = '';
+
+        tasks.forEach((task, index) => {
+            const listItem = document.createElement('li');
+            listItem.className = 'task-item';
+
+            const taskDetails = document.createElement('div');
+            taskDetails.textContent = `Название: ${task.name}, Срок: ${task.deadline}, Бригада: ${task.team}`;
+
+            const taskStatus = document.createElement('span');
+            taskStatus.textContent = getStatusText(task.status);
+            taskStatus.className = `task-status status-${task.status}`;
+
+            const actions = document.createElement('div');
+            actions.className = 'task-actions';
+
+            ['in-progress', 'completed', 'postponed'].forEach(status => {
+                const button = document.createElement('button');
+                button.textContent = getStatusText(status);
+                button.addEventListener('click', () => {
+                    task.status = status;
+                    renderTasks();
+                });
+                actions.appendChild(button);
+            });
+
+            listItem.appendChild(taskDetails);
+            listItem.appendChild(taskStatus);
+            listItem.appendChild(actions);
+            taskList.appendChild(listItem);
+        });
+
+        updateStatusSummary();
+    }
+
+    function getStatusText(status) {
+        const statusMap = {
+            sent: 'Отправлено',
+            'in-progress': 'В процессе',
+            completed: 'Завершено',
+            postponed: 'Отложено',
+            unaccepted: 'Не принято'
+        };
+        return statusMap[status] || 'Неизвестный статус';
+    }
+
+    function updateStatusSummary() {
+        const counts = { sent: 0, 'in-progress': 0, completed: 0, postponed: 0 };
+        tasks.forEach(task => counts[task.status]++);
+        document.getElementById('countSent').textContent = counts.sent;
+        document.getElementById('countInProgress').textContent = counts['in-progress'];
+        document.getElementById('countCompleted').textContent = counts.completed;
+        document.getElementById('countPostponed').textContent = counts.postponed;
+    }
+
+    document.getElementById('taskForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('taskName').value;
+        const description = document.getElementById('taskDescription').value;
+        const deadline = document.getElementById('taskDeadline').value;
+        const priority = document.getElementById('taskPriority').value;
+        const team = document.getElementById('taskTeam').value;
+
+        tasks.push({ name, description, deadline, priority, team, status: 'sent' });
+        document.getElementById('taskForm').reset();
+        renderTasks();
+    });
+
+  
+
+
+    // JavaScript to toggle between quantity and percentage view
+    document.getElementById('view-mode').addEventListener('change', function() {
+        const mode = this.value;
+
+        const completedStatus = document.getElementById('completed-status');
+        const inProgressStatus = document.getElementById('in-progress-status');
+        const deferredStatus = document.getElementById('deferred-status');
+        const overdueStatus = document.getElementById('overdue-status');
+
+        if (mode === 'percentage') {
+            completedStatus.innerHTML = "60% выполнено";
+            inProgressStatus.innerHTML = "25% в процессе";
+            deferredStatus.innerHTML = "10% отложено";
+            overdueStatus.innerHTML = "5% просрочено";
+        } else {
+            completedStatus.innerHTML = "6 из 10 выполнено";
+            inProgressStatus.innerHTML = "2 из 10 в процессе";
+            deferredStatus.innerHTML = "1 из 10 отложено";
+            overdueStatus.innerHTML = "0 из 10 просрочено";
+        }
+    });
+
+</script>  
+ 
+<script>
+
+    document.getElementById('toggleNotifications').addEventListener('click', () => {
+    const icon = document.querySelector('.notification-icon'); // Получаем элемент иконки
+
+    if (!('Notification' in window)) {
+        alert('Ваш браузер не поддерживает уведомления.');
+        return;
+    }
+
+    if (Notification.permission === 'default') {
+        // Запрашиваем разрешение на уведомления
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                showNotification('Уведомления включены!', 'Вы будете получать уведомления от этой страницы.');
+                icon.src = 'file:C:/Users/4816025/OneDrive/Рабочий стол/public/images/icons/Bell-ON-01.svg'; // Меняем на "включено"
+                icon.alt = 'Уведомления включены';
+            } else {
+                alert('Вы отклонили запрос на уведомления.');
+                icon.src = 'file:C:/Users/4816025/OneDrive/Рабочий стол/public/images/icons/Bell-OFF-02.svg'; // Меняем на "выключено"
+                icon.alt = '';
+            }
+        });
+    } else if (Notification.permission === 'granted') {
+        // Уведомления включены
+        showNotification('Уведомления уже включены.', 'Вы можете отключить их в настройках браузера.');
+        icon.src = 'file:C:/Users/4816025/OneDrive/Рабочий стол/public/images/icons/Bell-ON-01.svg'; // Убедимся, что иконка остаётся включённой
+        icon.alt = 'Уведомления включены';
+    } else {
+        // Уведомления заблокированы
+        alert('Уведомления заблокированы. Разблокируйте их в настройках браузера.');
+        icon.src = 'file:C:/Users/4816025/OneDrive/Рабочий стол/public/images/icons/Bell-OFF-02.svg'; // Меняем на "выключено"
+        icon.alt = '';
+    }
+});
+
+function showNotification(title, body) {
+    const notification = new Notification(title, {
+        body: body,
+        icon: 'file:C:/Users/4816025/OneDrive/Рабочий стол/public/images/icons/Bell-ON-01.svg', // Иконка уведомления
+    });
+}
+
+</script>
+
+<footer id="currentDateTime">
+    <!-- Дата и время будут отображаться здесь -->
+</footer>
+
+<script>
+
+function updateDateTime() {
+        const now = new Date();
+        const formattedTime = now.toLocaleString('ru-RU', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        document.getElementById('currentDateTime').textContent = formattedTime;
+    }
+
+    setInterval(updateDateTime, 1000);
+    renderTasks();
+
+
+
+</script>
+
+
+
+</body>
+</html>
